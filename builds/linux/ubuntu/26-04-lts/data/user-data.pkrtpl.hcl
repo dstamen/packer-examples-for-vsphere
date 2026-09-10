@@ -18,6 +18,10 @@ autoinstall:
         uri: http://ports.ubuntu.com/ubuntu-ports
   early-commands:
     - sudo systemctl stop ssh
+    - printf 'network:\n  version: 2\n  ethernets:\n    ens33:\n      dhcp4: true\n      dhcp-identifier: mac\n' | sudo tee /etc/netplan/99-mac.yaml
+    - sudo chmod 600 /etc/netplan/99-mac.yaml
+    - sudo netplan apply
+    - sleep 5
   locale: ${vm_guest_os_language}
   keyboard:
     layout: ${vm_guest_os_keyboard}
