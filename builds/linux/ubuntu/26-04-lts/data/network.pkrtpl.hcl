@@ -18,4 +18,5 @@
 %{ else ~}
         ${device}:
           dhcp4: true
+          dhcp-identifier: mac
 %{ endif ~}
